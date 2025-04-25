@@ -1,4 +1,3 @@
-import typing
 
 import pydantic
 class Pokemon(pydantic.BaseModel):
