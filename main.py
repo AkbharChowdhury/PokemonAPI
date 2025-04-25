@@ -1,3 +1,5 @@
+from typing import Any
+
 import requests
 import json
 from pokemon_class import Pokemon
@@ -18,7 +20,7 @@ def get_pokemon_hint(limit: int):
     return (suggestion['name'] for suggestion in suggestions)
 
 
-def get_pokemon(name: str):
+def get_pokemon(name: str) -> dict:
     pokemon = requests.get(f'{base_url}/pokemon/{name}')
     if pokemon.status_code == 404:
         print('this pokemon cannot be found!')
@@ -26,7 +28,7 @@ def get_pokemon(name: str):
     return pokemon.json()
 
 
-def request_pokemon():
+def request_pokemon() -> dict[str, Any]:
     pokemon_name: str = input('enter pokemon: '.title()).strip()
     pokemon = get_pokemon(pokemon_name)
     return pokemon
@@ -34,7 +36,6 @@ def request_pokemon():
 
 def main():
     suggested_pokemons = list(get_pokemon_hint(limit=10))
-
     pokemon = request_pokemon()
     while not pokemon:
         print('suggestions'.capitalize())
