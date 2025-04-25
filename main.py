@@ -11,9 +11,8 @@ def get_pokemon(name: str):
 
 
 def main():
-    pokemon_name: str = 'pikachu'
-    # pokemon_name: str = 'ditto'
-    # pokemon_name: str = 'abra'
+    pokemon_name: str = input('enter pokemon: '.title()).strip()
+
 
     pokemon = get_pokemon(pokemon_name)
 
