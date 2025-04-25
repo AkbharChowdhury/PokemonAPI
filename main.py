@@ -1,5 +1,6 @@
+import pprint
 from typing import Any
-
+from pprint import pprint
 import requests
 import json
 from pokemon_class import Pokemon
@@ -7,13 +8,13 @@ from pokemon_class import Pokemon
 base_url: str = 'https://pokeapi.co/api/v2/'
 
 
-def get_pokemon_hint(limit: int):
+def get_pokemon_suggestions(num_pokemons: int):
     '''
 
-    :param limit: int
+    :param num_pokemons: int
     :return: a list of suggested pokemons
     '''
-    url = f'{base_url}pokemon?limit={limit}&offset=2'
+    url = f'{base_url}pokemon?limit={num_pokemons}&offset=2'
     request = requests.get(url)
     data = request.json()
     suggestions = data['results']
@@ -35,11 +36,11 @@ def request_pokemon() -> dict[str, Any]:
 
 
 def main():
-    suggested_pokemons = list(get_pokemon_hint(limit=10))
+    suggested_pokemons = list(get_pokemon_suggestions(num_pokemons=10))
     pokemon = request_pokemon()
     while not pokemon:
         print('suggestions'.capitalize())
-        print(suggested_pokemons)
+        pprint(suggested_pokemons)
         pokemon = request_pokemon()
 
     if pokemon:

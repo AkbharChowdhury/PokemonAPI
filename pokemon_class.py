@@ -1,4 +1,3 @@
-
 import pydantic
 class Pokemon(pydantic.BaseModel):
     name: str
