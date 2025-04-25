@@ -10,7 +10,6 @@ base_url: str = 'https://pokeapi.co/api/v2/'
 
 def get_pokemon_suggestions(num_pokemons: int):
     '''
-
     :param num_pokemons: int
     :return: a list of suggested pokemons
     '''
@@ -30,13 +29,12 @@ def get_pokemon(name: str) -> dict:
 
 
 def request_pokemon() -> dict[str, Any]:
-    pokemon_name: str = input('enter pokemon: '.title()).strip()
+    pokemon_name = input('enter pokemon: '.title()).strip() or 'pikachu'
     pokemon = get_pokemon(pokemon_name)
     return pokemon
 
 
 def main():
-    suggested_pokemons = list(get_pokemon_suggestions(num_pokemons=10))
     pokemon = request_pokemon()
     while not pokemon:
         print('suggestions'.capitalize())
@@ -55,4 +53,6 @@ def main():
 
 
 if __name__ == '__main__':
+    suggested_pokemons = list(get_pokemon_suggestions(num_pokemons=10))
+
     main()
