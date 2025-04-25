@@ -7,7 +7,6 @@ def get_pokemon(name: str):
     if pokemon.status_code == 404:
         print('this pokemon cannot be found!')
         return dict()
-    print(pokemon.status_code)
     return pokemon.json()
 
 
@@ -28,21 +27,6 @@ def main():
         for ability in p.abilities:
             print(ability['ability']['name'], 'slots',ability['slot'])
 
-
-
-        # print(f'name: {pokemon.get('name')}'.title())
-        # print(f'weight: {pokemon.get('name')}'.title())
-        # # print(f'abilities: {pokemon.get('abilities')}'.title())
-        # print('Abilities:')
-        # abilities = pokemon.get('abilities')
-        #
-        # print(abilities)
-        # # exit(0)
-        #
-        # # print(f'abilities: {abilities}'.title())
-        # for ability in abilities:
-        #     print(ability)
-        #     print(ability['ability']['name'], 'slots',ability['slot'])
 
 
 
