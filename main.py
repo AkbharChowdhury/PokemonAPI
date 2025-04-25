@@ -33,7 +33,7 @@ def request_pokemon():
 
 
 def main():
-    suggested_pokemons = list(get_pokemon_hint(2))
+    suggested_pokemons = list(get_pokemon_hint(limit=10))
 
     pokemon = request_pokemon()
     while not pokemon:
