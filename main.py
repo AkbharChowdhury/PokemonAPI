@@ -29,7 +29,10 @@ def get_pokemon(name: str) -> dict:
 
 
 def request_pokemon() -> dict[str, Any]:
-    pokemon_name = input('enter pokemon: '.title()).strip() or 'pikachu'
+    while True:
+        pokemon_name = input('enter pokemon: '.title()).strip()
+        if not pokemon_name: print('pokemon cannot be empty. please try again...'.capitalize())
+        if pokemon_name: break
     pokemon = get_pokemon(pokemon_name)
     return pokemon
 
@@ -53,6 +56,29 @@ def main():
 
 
 if __name__ == '__main__':
+    # u = input('enter a value')
+    # print(f'{u=} {type(u)}')
     suggested_pokemons = list(get_pokemon_suggestions(num_pokemons=10))
-
+    #
     main()
+    # p = None
+    # while pokemon := input('pokemon') == '':
+    #     print('enter a valid pokemon')
+    # print('you chose', pokemon)
+
+
+    # while True:
+    #     p = input('enter pokemon: '.title()).strip()
+    #     if not p: print('pokemon cannot be empty. please try again...')
+    #     if p: break
+    # print(p)
+
+    # p = input('enter pokemon: '.title()).strip()
+    # s = p
+    # s = 'init'
+    # while (p :=input('enter pokemon: '.title()).strip()) == '':
+    #     print('pokemon cannot be empty. please try again...')
+    # print(f'selected pokemon {s=}')
+
+
+
