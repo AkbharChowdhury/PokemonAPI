@@ -43,42 +43,21 @@ def main():
         print('suggestions'.capitalize())
         pprint(suggested_pokemons)
         pokemon = request_pokemon()
+    if not pokemon:
+        return
+    print('Pokemon Details')
+    p = Pokemon(name=pokemon.get('name'), weight=pokemon.get('weight'), abilities=pokemon.get('abilities'))
+    print(f'name: {p.name}'.title())
+    print(f'weight: {p.weight}'.title())
+    print('abilities'.capitalize())
+    for ability in p.abilities:
+        print(ability['ability']['name'], 'slots', ability['slot'])
+    full_details = input(f'would you like to view full {p.name} full profile? [y/n]: ')
+    if full_details.casefold() == 'y':
+        print(json.dumps(pokemon, indent=2))
 
-    if pokemon:
-        # print(json.dumps(pokemon, indent=2))
-        print('Pokemon Details')
-        p = Pokemon(name=pokemon.get('name'), weight=pokemon.get('weight'), abilities=pokemon.get('abilities'))
-        print(f'name: {p.name}'.title())
-        print(f'weight: {p.weight}'.title())
-        print('abilities'.capitalize())
-        for ability in p.abilities:
-            print(ability['ability']['name'], 'slots', ability['slot'])
 
 
 if __name__ == '__main__':
-    # u = input('enter a value')
-    # print(f'{u=} {type(u)}')
     suggested_pokemons = list(get_pokemon_suggestions(num_pokemons=10))
-    #
     main()
-    # p = None
-    # while pokemon := input('pokemon') == '':
-    #     print('enter a valid pokemon')
-    # print('you chose', pokemon)
-
-
-    # while True:
-    #     p = input('enter pokemon: '.title()).strip()
-    #     if not p: print('pokemon cannot be empty. please try again...')
-    #     if p: break
-    # print(p)
-
-    # p = input('enter pokemon: '.title()).strip()
-    # s = p
-    # s = 'init'
-    # while (p :=input('enter pokemon: '.title()).strip()) == '':
-    #     print('pokemon cannot be empty. please try again...')
-    # print(f'selected pokemon {s=}')
-
-
-
