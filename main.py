@@ -14,18 +14,19 @@ def get_pokemon_suggestions(num_pokemons: int):
     :return: a list of suggested pokemons
     '''
     url = f'{base_url}pokemon?limit={num_pokemons}&offset=2'
-    request = requests.get(url)
-    data = request.json()
-    suggestions = data['results']
-    return (suggestion['name'] for suggestion in suggestions)
+
+    with requests.get(url) as request:
+        data = request.json()
+        suggestions = data['results']
+        return (suggestion['name'] for suggestion in suggestions)
 
 
 def get_pokemon(name: str) -> dict:
-    pokemon = requests.get(f'{base_url}/pokemon/{name}')
-    if pokemon.status_code == 404:
-        print('this pokemon cannot be found!')
-        return dict()
-    return pokemon.json()
+    with requests.get(f'{base_url}/pokemon/{name}') as pokemon:
+        if pokemon.status_code == 404:
+            print('this pokemon cannot be found!')
+            return dict()
+        return pokemon.json()
 
 
 def request_pokemon() -> dict[str, Any]:
@@ -55,7 +56,6 @@ def main():
     full_details = input(f'would you like to view full {p.name} full profile? [y/n]: ')
     if full_details.casefold() == 'y':
         print(json.dumps(pokemon, indent=2))
-
 
 
 if __name__ == '__main__':
