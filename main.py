@@ -13,11 +13,10 @@ def get_pokemon_suggestions(num_pokemons: int):
     :param num_pokemons: int
     :return: a list of suggested pokemons
     '''
-    url = f'{base_url}pokemon?limit={num_pokemons}&offset=2'
-
-    with requests.get(url) as request:
-        data = request.json()
-        suggestions = data['results']
+    with requests.get(f'{base_url}pokemon', params=dict(limit=num_pokemons, offset=2)) as response:
+        data: dict[str, Any] = response.json()
+        print(data)
+        suggestions = data.get('results')
         return (suggestion['name'] for suggestion in suggestions)
 
 
@@ -60,4 +59,5 @@ def main():
 
 if __name__ == '__main__':
     suggested_pokemons = list(get_pokemon_suggestions(num_pokemons=10))
-    main()
+    print(suggested_pokemons)
+    # main()
